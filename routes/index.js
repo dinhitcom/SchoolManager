@@ -136,4 +136,26 @@ router.get('/api/person/', async (req, res) => {
   });
 });
 
+router.get('/department', function(req, res, next) {
+  res.render('department', { 
+    title: 'Student Manager',
+    page: 'department'
+  });
+});
+
+router.get('/api/department/', async (req, res) => {
+  const connection1 = new sql.ConnectionPool(sqlConfig1).connect().then((pool) => {
+    return pool;
+  })
+  const connectionPool = await connection1;
+  var queryString = `SELECT * FROM Department`
+  return await connectionPool.request().query(queryString, (err, data) => {
+    // res.send({'data': data.recordsets[0]})
+    if (err) console.log(err)
+    connectionPool.close()
+    // console.log(data)
+    res.send(data.recordsets[0]);
+  });
+});
+
 module.exports = router;

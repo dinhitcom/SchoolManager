@@ -1,0 +1,46 @@
+extends layout
+
+block import 
+  script(src="/javascripts/department.script.js") 
+
+block content
+  table#departmentTable.table.table-bordered.mt-2
+    thead
+      tr 
+        th DepartmentID 
+        th Name
+        th Budget
+        th Start Date
+        th Administrator
+        th 
+          button.btn.btn-success(data-toggle='modal', data-target='#addDepartmentModal') Add Department
+    tbody#departmentTableBody 
+  #addDepartmentModal.modal(tabindex='-1', role='dialog')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title Add a department
+          button.close(type='button', data-dismiss='modal') &times;
+        .modal-body
+          form(action='/api/deparment/', method='POST')
+            .form-group
+              label(for='DepartmentID') DepartmentID:
+              input.form-control(type='text', placeholder='DepartmentID', name='DepartmentID', required='')
+              //- small#usernameValidateMsg.form-text.hidden.emsg T&ecirc;n &dstrok;&abreve;ng nh&#x1EAD;p c&oacute; &dstrok;&#x1ED9; d&agrave;i t&#x1EEB; 5 - 32 k&yacute; t&#x1EF1;, ch&#x1EC9; ch&#x1EE9;a ch&#x1EEF;, s&#x1ED1; v&agrave; k&yacute; t&#x1EF1; &quot;.&quot;, &quot;_&quot;
+            .form-group
+              label(for='Name') Name:
+              input.form-control(type='text', placeholder='Department name', name='Name', required='')
+              //- small#emailValidateMsg.form-text.hidden.emsg &Dstrok;&#x1ECB;a ch&#x1EC9; email kh&ocirc;ng h&#x1EE3;p l&#x1EC7;
+            .form-group
+              label(for='Budget') Credits:
+              input.form-control(type='text', placeholder='Budget', name='Budget')
+              //- small#emailValidateMsg.form-text.hidden.emsg &Dstrok;&#x1ECB;a ch&#x1EC9; email kh&ocirc;ng h&#x1EE3;p l&#x1EC7;
+            
+            .form-group
+              label(for='Administrator') Administrator:
+              select.form-control(name='Administrator')
+              //- small#roleValidateMsg.form-text.hidden.emsg Vui l&ograve;ng ch&#x1ECD;n vai tr&ograve;
+            button#createAccount-btn.btn.btn-primary(type='submit') Add course
+        .modal-footer
+          button.btn.btn-danger(type='button', data-dismiss='modal') Close
+  
