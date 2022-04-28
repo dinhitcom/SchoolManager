@@ -1,0 +1,62 @@
+@charset "UTF-8";
+body {
+	font-family: 'Helvetica', 'Arial', san-serif;
+}
+.login-form {
+    width: 50%;
+    margin-top: 10rem;
+    box-shadow: 1px 1px 3px 1px rgba(125,125,125,1);
+}
+
+.sidebar {
+    height: 100vh;
+}
+
+.sidebar-item {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.selected {
+    background-color: #535b61;
+}
+
+.sidebar-item a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+.sidebar-item a:hover{
+    text-decoration: none;
+}
+.sidebar-item:hover {
+    background-color: #626b73;
+}
+
+.hidden {
+    display: none;
+}
+
+.emsg{
+    color: red;
+}
+
+.table tbody > tr > td {
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 992px) {
+    .login-form {
+        width: 75% ;
+    }
+    .sidebar {
+        height: auto;
+        margin: 0 !important;
+        width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .login-form {
+        width: 100%;
+    }
+  }

@@ -1,0 +1,72 @@
+extends layout
+
+block import 
+  script(src="/javascripts/index.script.js") 
+
+block content
+  table#courseTable.table.table-bordered.mt-2
+    thead
+      tr 
+        th CourseID 
+        th Title 
+        th Credits 
+        th DepartmentID
+        th 
+          button.btn.btn-success(data-toggle='modal', data-target='#addCourseModal') Add Course
+    tbody#courseTableBody 
+  #addCourseModal.modal(tabindex='-1', role='dialog')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title Add a course
+          button.close(type='button', data-dismiss='modal') &times;
+        .modal-body
+          form(action='/api/course/', method='POST')
+            .form-group
+              label(for='CourseID') CourseID:
+              input.form-control(type='text', placeholder='CourseID', name='CourseID', required='')
+              //- small#usernameValidateMsg.form-text.hidden.emsg T&ecirc;n &dstrok;&abreve;ng nh&#x1EAD;p c&oacute; &dstrok;&#x1ED9; d&agrave;i t&#x1EEB; 5 - 32 k&yacute; t&#x1EF1;, ch&#x1EC9; ch&#x1EE9;a ch&#x1EEF;, s&#x1ED1; v&agrave; k&yacute; t&#x1EF1; &quot;.&quot;, &quot;_&quot;
+            .form-group
+              label(for='Title') Title:
+              input.form-control(type='text', placeholder='Course title', name='Title', required='')
+              //- small#emailValidateMsg.form-text.hidden.emsg &Dstrok;&#x1ECB;a ch&#x1EC9; email kh&ocirc;ng h&#x1EE3;p l&#x1EC7;
+            .form-group
+              label(for='Credits') Credits:
+              input.form-control(type='text', placeholder='Credits', name='Credits')
+              //- small#emailValidateMsg.form-text.hidden.emsg &Dstrok;&#x1ECB;a ch&#x1EC9; email kh&ocirc;ng h&#x1EE3;p l&#x1EC7;
+            
+            .form-group
+              label(for='DepartmentID') Department:
+              select.form-control(name='DepartmentID')
+              //- small#roleValidateMsg.form-text.hidden.emsg Vui l&ograve;ng ch&#x1ECD;n vai tr&ograve;
+            button#createAccount-btn.btn.btn-primary(type='submit') Add course
+        .modal-footer
+          button.btn.btn-danger(type='button', data-dismiss='modal') Close
+  #updateCourseModal.modal(tabindex='-1', role='dialog')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title Update course
+          button.close(type='button', data-dismiss='modal') &times;
+        .modal-body
+          form(action='#', method='POST')
+            .form-group
+              //- label(for='CourseID') CourseID:
+              input#CourseID.form-control(type='text', placeholder='CourseID', name='CourseID', required='', hidden)
+              //- small#usernameValidateMsg.form-text.hidden.emsg T&ecirc;n &dstrok;&abreve;ng nh&#x1EAD;p c&oacute; &dstrok;&#x1ED9; d&agrave;i t&#x1EEB; 5 - 32 k&yacute; t&#x1EF1;, ch&#x1EC9; ch&#x1EE9;a ch&#x1EEF;, s&#x1ED1; v&agrave; k&yacute; t&#x1EF1; &quot;.&quot;, &quot;_&quot;
+            .form-group
+              label(for='Title') Title:
+              input#Title.form-control(type='text', placeholder='Course title', name='Title', required='')
+              //- small#emailValidateMsg.form-text.hidden.emsg &Dstrok;&#x1ECB;a ch&#x1EC9; email kh&ocirc;ng h&#x1EE3;p l&#x1EC7;
+            .form-group
+              label(for='Credits') Credits:
+              input#Credits.form-control(type='text', placeholder='Credits', name='Credits')
+              //- small#emailValidateMsg.form-text.hidden.emsg &Dstrok;&#x1ECB;a ch&#x1EC9; email kh&ocirc;ng h&#x1EE3;p l&#x1EC7;
+            
+            .form-group
+              label(for='DepartmentID') Department:
+              select#DepartmentID.form-control(name='DepartmentID')
+              //- small#roleValidateMsg.form-text.hidden.emsg Vui l&ograve;ng ch&#x1ECD;n vai tr&ograve;
+            button#updateCourse-btn.btn.btn-primary(type='button') Save changes
+        .modal-footer
+          button.btn.btn-danger(type='button', data-dismiss='modal') Close
