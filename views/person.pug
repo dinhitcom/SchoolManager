@@ -1,0 +1,18 @@
+extends layout
+
+block import 
+  script(src="/javascripts/person.script.js") 
+
+block content
+  table#courseTable.table.table-bordered.mt-2
+    thead
+      tr 
+        th PersonID 
+        th Last name 
+        th First name 
+        th Hire Date
+        th Enrollment date
+        th Discriminator
+        th 
+          button.btn.btn-success(data-toggle='modal', data-target='#addPersonModal') Add Person
+    tbody#personTableBody 

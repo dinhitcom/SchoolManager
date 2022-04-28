@@ -26,13 +26,30 @@ html
       .row 
         .col-12.col-md-2.bg-secondary.p-0 
           .sidebar.mt-3 
-            .sidebar-item.selected
-              a.sidebar-link(href='/') Course
-            .sidebar-item
-              a.sidebar-link(href='#') Department 
-            .sidebar-item
-              a.sidebar-link(href='#') Person 
-            .sidebar-item
-              a.sidebar-link(href='#') Student Grade
+            if page=='index'
+              .sidebar-item.selected
+               a.sidebar-link(href='/') Course
+            else
+              .sidebar-item
+               a.sidebar-link(href='/') Course
+            if page=='person'
+              .sidebar-item.selected
+                a.sidebar-link(href='/person') Person
+            else
+              .sidebar-item
+                a.sidebar-link(href='/person') Person  
+            if page=='department'
+              .sidebar-item
+                a.sidebar-link(href='/department') Department 
+            else 
+              .sidebar-item
+                a.sidebar-link(href='/department') Department 
+            if page=='grade'
+              .sidebar-item.selected
+                a.sidebar-link(href='/grade') Student Grade
+            else 
+              .sidebar-item
+                a.sidebar-link(href='/grade') Student Grade
+        
         .col-12.col-md-10.pt-2#main
           block content

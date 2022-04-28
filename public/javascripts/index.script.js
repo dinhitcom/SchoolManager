@@ -4,7 +4,7 @@ $(document).ready( function () {
     function appendData(data, _selector) {
         // console.log(data)
         $.each(data, (key, value) => {
-            $('#courseTableBody').append(`
+            $(_selector).append(`
                 <tr id=${value.CourseID}>
                     <td>${value.CourseID}</td>
                     <td>${value.Title}</td>
@@ -22,7 +22,9 @@ $(document).ready( function () {
     $.ajax({
         url: '/api/course/',
         method: 'GET',
-        success: appendData
+        success: (res) => {
+            appendData(res, '#courseTableBody')
+        }
     })
     // departments = undefined
     $.ajax({

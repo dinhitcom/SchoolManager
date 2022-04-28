@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sql = require('mssql/msnodesqlv8')
 var sqlConfig1 = {
-  user: 'sa',
-  password: 'Abcd@@123',
+  // user: 'sa',
+  // password: 'Abcd@@123',
   server: 'DIN0BYTE-PC\\MSSQLSERVER2',
   driver: 'msnodesqlv8',
   options: {
@@ -18,7 +18,7 @@ var sqlConfig1 = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Student Manager' });
+  res.render('index', { title: 'Student Manager', page: 'index' });
 });
 
 router.get('/api/course', async (req, res) => {
@@ -109,4 +109,31 @@ router.get('/api/department/', async (req, res) => {
     res.send(data.recordsets[0])
   })
 })
+
+
+
+
+
+router.get('/person', function(req, res, next) {
+  res.render('person', { 
+    title: 'Student Manager',
+    page: 'person'
+  });
+});
+
+router.get('/api/person/', async (req, res) => {
+  const connection1 = new sql.ConnectionPool(sqlConfig1).connect().then((pool) => {
+    return pool;
+  })
+  const connectionPool = await connection1;
+  var queryString = `SELECT * FROM Person`
+  return await connectionPool.request().query(queryString, (err, data) => {
+    // res.send({'data': data.recordsets[0]})
+    if (err) console.log(err)
+    connectionPool.close()
+    // console.log(data)
+    res.send(data.recordsets[0]);
+  });
+});
+
 module.exports = router;
